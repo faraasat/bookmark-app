@@ -8,16 +8,16 @@ import DialogContentText from "@material-ui/core/DialogContentText"
 import DialogTitle from "@material-ui/core/DialogTitle"
 import AddCircleIcon from "@material-ui/icons/AddCircle"
 import CancelIcon from "@material-ui/icons/Cancel"
-import "./update-todo.styles.css"
+import "./update-bookmark.styles.css"
 import { useFormik } from "formik"
 import { useDispatch } from "react-redux"
-import { refreshComponent } from "../../store/todo.slice"
+import { refreshComponent } from "../../store/bookmark.slice"
 import { gql } from "graphql-tag"
 import { useMutation, useQuery } from "@apollo/client"
 
 const UPDATE_TODO = gql`
-  mutation updateTodo($refId: String!, $task: String!) {
-    updateTodo(refId: $refId, task: $task) {
+  mutation updateBookmark($refId: String!, $task: String!) {
+    updateBookmark(refId: $refId, task: $task) {
       id
       refId
       collectionName
@@ -29,7 +29,7 @@ const UPDATE_TODO = gql`
 
 const GET_DATA = gql`
   query {
-    getTodos {
+    getBookmarks {
       refId
       collectionName
       id
@@ -39,9 +39,14 @@ const GET_DATA = gql`
   }
 `
 
-const UpdateTodoComponent = ({ prev, openDetail, setOpenDetail, refObj }) => {
-  const [addTodoData, setAddTodoData] = useState<any>()
-  const [updateTodo] = useMutation(UPDATE_TODO)
+const UpdateBookmarkComponent = ({
+  prev,
+  openDetail,
+  setOpenDetail,
+  refObj,
+}) => {
+  const [addBookmarkData, setAddBookmarkData] = useState<any>()
+  const [updateBookmark] = useMutation(UPDATE_TODO)
   const { refetch } = useQuery(GET_DATA)
   const dispatch = useDispatch()
 
@@ -50,21 +55,21 @@ const UpdateTodoComponent = ({ prev, openDetail, setOpenDetail, refObj }) => {
   }
 
   useEffect(() => {
-    dispatch(refreshComponent(addTodoData))
-  }, [addTodoData])
+    dispatch(refreshComponent(addBookmarkData))
+  }, [addBookmarkData])
 
-  const addTodo = async (values: any) => {
-    if (prev === values.todo || prev === "" || prev.length <= 3) return
+  const addBookmark = async (values: any) => {
+    if (prev === values.bookmark || prev === "" || prev.length <= 3) return
     try {
-      const res = updateTodo({
+      const res = updateBookmark({
         variables: {
           refId: refObj.refId,
-          task: values.todo,
+          task: values.bookmark,
           refetchQueries: [{ query: GET_DATA }],
         },
       })
       res.then(data => {
-        setAddTodoData(data.data)
+        setAddBookmarkData(data.data)
         refetch()
       })
     } catch (error) {
@@ -74,21 +79,21 @@ const UpdateTodoComponent = ({ prev, openDetail, setOpenDetail, refObj }) => {
 
   const formik = useFormik({
     initialValues: {
-      todo: prev,
+      bookmark: prev,
     },
     validate: (values: any) => {
-      const errors = { todo: "" }
-      if (!values.todo) {
-        errors.todo = "Required"
+      const errors = { bookmark: "" }
+      if (!values.bookmark) {
+        errors.bookmark = "Required"
         return errors
-      } else if (values.todo.length >= 1 && values.todo.length <= 3) {
-        errors.todo = "More Than 3 characters are required"
+      } else if (values.bookmark.length >= 1 && values.bookmark.length <= 3) {
+        errors.bookmark = "More Than 3 characters are required"
         return errors
       }
     },
     onSubmit: (values, { setSubmitting, resetForm }) => {
       setSubmitting(true)
-      addTodo(values)
+      addBookmark(values)
       setSubmitting(false)
       resetForm()
       setOpenDetail(false)
@@ -96,31 +101,31 @@ const UpdateTodoComponent = ({ prev, openDetail, setOpenDetail, refObj }) => {
   })
 
   return (
-    <div className="crud-component__update-todo">
+    <div className="bookmark-component__update-bookmark">
       <Dialog
         open={openDetail}
         onClose={handleClose}
         aria-labelledby="form-dialog-title"
       >
         <form onSubmit={formik.handleSubmit}>
-          <DialogTitle id="form-dialog-title">Update a Todo</DialogTitle>
-          <DialogContent className="crud-component__update-todo__dialog-content">
+          <DialogTitle id="form-dialog-title">Update a Bookmark</DialogTitle>
+          <DialogContent className="bookmark-component__update-bookmark__dialog-content">
             <DialogContentText>
-              Write the name of todo and click Update Todo to list your todo so
-              that you can remember What <b>Todo</b>?
+              Write the name of bookmark and click Update Bookmark to list your
+              bookmark so that you can remember What <b>Bookmark</b>?
             </DialogContentText>
             <TextField
               autoFocus
               margin="dense"
-              label="Your Todo"
+              label="Your Bookmark"
               type="text"
-              id="todo"
+              id="bookmark"
               fullWidth
               onChange={formik.handleChange}
-              value={formik.values.todo}
+              value={formik.values.bookmark}
               helperText={
-                formik.errors.todo && formik.touched.todo
-                  ? formik.errors.todo
+                formik.errors.bookmark && formik.touched.bookmark
+                  ? formik.errors.bookmark
                   : ""
               }
             />
@@ -128,18 +133,18 @@ const UpdateTodoComponent = ({ prev, openDetail, setOpenDetail, refObj }) => {
           <DialogActions>
             <Button
               onClick={handleClose}
-              className="crud-component__btn-cancel"
+              className="bookmark-component__btn-cancel"
             >
               <CancelIcon />
               &nbsp;Cancel
             </Button>
             <button
               type="submit"
-              className="crud-component__btn-add"
+              className="bookmark-component__btn-add"
               disabled={formik.isSubmitting}
             >
               <AddCircleIcon />
-              &nbsp;Update Todo
+              &nbsp;Update Bookmark
             </button>
           </DialogActions>
         </form>
@@ -148,4 +153,4 @@ const UpdateTodoComponent = ({ prev, openDetail, setOpenDetail, refObj }) => {
   )
 }
 
-export default UpdateTodoComponent
+export default UpdateBookmarkComponent

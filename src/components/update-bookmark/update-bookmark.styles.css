@@ -1,4 +1,4 @@
-.crud-component__update-todo__btn {
+.bookmark-component__update-todo__btn {
   background-image: linear-gradient(
     to right,
     #e55d87 0%,
@@ -24,7 +24,7 @@
   transition: all 0.8s ease-in-out;
 }
 
-.crud-component__update-todo__btn:hover {
+.bookmark-component__update-todo__btn:hover {
   background-position: right center;
   color: #fff;
   text-decoration: none;
@@ -32,16 +32,16 @@
   box-shadow: 0 0 7px rgba(0, 0, 0, 0.5);
 }
 
-.crud-component__update-todo__btn:active {
+.bookmark-component__update-todo__btn:active {
   transform: scale(0.995);
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.6);
 }
 
-.crud-component__btn-cancel * {
+.bookmark-component__btn-cancel * {
   color: red;
 }
 
-.crud-component__btn-update {
+.bookmark-component__btn-update {
   color: green;
   background-color: #fff;
   display: flex;
@@ -56,10 +56,10 @@
   border-radius: 4px;
 }
 
-.crud-component__btn-update:hover {
+.bookmark-component__btn-update:hover {
   background-color: rgba(0, 0, 0, 0.04);
 }
 
-.crud-component__update-todo__dialog-content .MuiFormHelperText-root {
+.bookmark-component__update-todo__dialog-content .MuiFormHelperText-root {
   color: red !important;
 }
