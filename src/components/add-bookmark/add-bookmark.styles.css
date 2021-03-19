@@ -1,0 +1,71 @@
+.bookmark-component__add-bookmark__btn {
+  background-image: linear-gradient(
+    to right,
+    #e55d87 0%,
+    #5fc3e4 51%,
+    #e55d87 100%
+  );
+  margin: 10px;
+  padding: 13px 65px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  box-shadow: 0 0 1px rgb(0, 0, 0);
+  border-radius: 10px;
+  display: block;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-weight: bold;
+  font-family: "Potta One", cursive;
+  text-shadow: 0px 0px 3px rgba(1, 1, 1, 1);
+  transition: all 0.8s ease-in-out;
+  display: flex;
+  align-items: center;
+}
+
+.bookmark-component__add-bookmark__btn svg {
+  filter: drop-shadow(0px 0px 1.6px rgba(1,1,1,1));
+}
+
+.bookmark-component__add-bookmark__btn:hover {
+  background-position: right center;
+  color: #fff;
+  text-decoration: none;
+  transform: scale(1.08);
+  box-shadow: 0 0 7px rgba(0, 0, 0, 0.5);
+}
+
+.bookmark-component__add-bookmark__btn:active {
+  transform: scale(0.995);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.6);
+}
+
+.bookmark-component__btn-cancel * {
+  color: red;
+}
+
+.bookmark-component__btn-add {
+  color: green;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  outline: none;
+  text-transform: uppercase;
+  margin-right: 20px;
+  cursor: pointer;
+  padding: 6px 8px;
+  border-radius: 4px;
+}
+
+.bookmark-component__btn-add:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+.bookmark-component__add-bookmark__dialog-content .MuiFormHelperText-root {
+  color: red !important;
+}

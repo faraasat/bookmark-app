@@ -2,12 +2,12 @@ import { configureStore } from "@reduxjs/toolkit"
 import React from "react"
 import { ApolloProvider } from "@apollo/client"
 import { Provider } from "react-redux"
-import { TodoSliceReducer } from "./store/todo.slice"
+import { BookmarkSliceReducer } from "./store/bookmark.slice"
 import { client } from "./apollo/client"
 
 const store = configureStore({
   reducer: {
-    todoReducer: TodoSliceReducer,
+    bookmarkReducer: BookmarkSliceReducer,
   },
 })
 
