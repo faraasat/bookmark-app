@@ -4,19 +4,19 @@ import StarBorderIcon from "@material-ui/icons/StarBorder"
 import DeleteIcon from "@material-ui/icons/Delete"
 import UpdateIcon from "@material-ui/icons/Update"
 import { useDispatch } from "react-redux"
-import UpdateTodoComponent from "../update-todo/update-todo.component"
+import UpdateBookmarkComponent from "../update-bookmark/update-bookmark.component"
 import {
-  deleteTodo as deleteMyTodo,
+  deleteBookmark as deleteMyBookmark,
   refreshComponent,
-  pinTodo,
-} from "../../store/todo.slice"
-import "./todo-stick.styles.css"
+  pinBookmark,
+} from "../../store/bookmark.slice"
+import "./bookmark-stick.styles.css"
 import { gql } from "graphql-tag"
 import { useMutation, useQuery } from "@apollo/client"
 
 const DELETE_TODO = gql`
-  mutation deleteTodo($refId: String!) {
-    deleteTodo(refId: $refId) {
+  mutation deleteBookmark($refId: String!) {
+    deleteBookmark(refId: $refId) {
       id
       refId
       collectionName
@@ -40,7 +40,7 @@ const STARRED_TODO = gql`
 
 const GET_DATA = gql`
   query {
-    getTodos {
+    getBookmarks {
       refId
       collectionName
       id
@@ -50,31 +50,31 @@ const GET_DATA = gql`
   }
 `
 
-const TodoStickComponent = ({ refObj }) => {
-  const [changeTodoData, setChangeTodoData] = useState<any>()
+const BookmarkStickComponent = ({ refObj }) => {
+  const [changeBookmarkData, setChangeBookmarkData] = useState<any>()
   const [changeStarredData, setChangeStarredData] = useState<any>()
   const [openDetail, setOpenDetail] = useState<boolean>(false)
-  const [deleteTodo] = useMutation(DELETE_TODO)
+  const [deleteBookmark] = useMutation(DELETE_TODO)
   const [updateStarred] = useMutation(STARRED_TODO)
   const { refetch } = useQuery(GET_DATA)
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(refreshComponent(changeTodoData))
+    dispatch(refreshComponent(changeBookmarkData))
     dispatch(refreshComponent(changeStarredData))
-  }, [changeTodoData, changeStarredData])
+  }, [changeBookmarkData, changeStarredData])
 
-  const handleTodoDelete = async () => {
-    dispatch(deleteMyTodo(refObj.refId))
+  const handleBookmarkDelete = async () => {
+    dispatch(deleteMyBookmark(refObj.refId))
     try {
-      const res = deleteTodo({
+      const res = deleteBookmark({
         variables: {
           refId: refObj.refId,
           refetchQueries: [{ query: GET_DATA }],
         },
       })
       res.then(data => {
-        setChangeTodoData(data.data)
+        setChangeBookmarkData(data.data)
         refetch()
       })
     } catch (error) {
@@ -84,7 +84,7 @@ const TodoStickComponent = ({ refObj }) => {
 
   const handleStarredUpdate = async value => {
     try {
-      dispatch(pinTodo(refObj.id))
+      dispatch(pinBookmark(refObj.id))
       const res = updateStarred({
         variables: {
           refId: refObj.refId,
@@ -101,15 +101,15 @@ const TodoStickComponent = ({ refObj }) => {
     }
   }
 
-  const handleTodoUpdate = () => {
+  const handleBookmarkUpdate = () => {
     setOpenDetail(true)
   }
 
   return (
     <>
-      <div className="crud-component__todo-stick">
-        <div className="crud-component__todo-stick__content">
-          <span className="crud-component__todo-stick__content-star">
+      <div className="bookmark-component__bookmark-stick">
+        <div className="bookmark-component__bookmark-stick__content">
+          <span className="bookmark-component__bookmark-stick__content-star">
             {refObj.starred ? (
               <StarIcon
                 onClick={() => handleStarredUpdate(false)}
@@ -122,24 +122,24 @@ const TodoStickComponent = ({ refObj }) => {
               />
             )}
           </span>
-          <span className="crud-component__todo-stick__content-task">
+          <span className="bookmark-component__bookmark-stick__content-task">
             {refObj.task}
           </span>
-          <div className="crud-component__todo-stick__content-icons">
+          <div className="bookmark-component__bookmark-stick__content-icons">
             <span
-              className="crud-component__todo-stick__content-delete"
+              className="bookmark-component__bookmark-stick__content-delete"
               title="Delete"
               onClick={() => {
-                handleTodoDelete()
+                handleBookmarkDelete()
               }}
             >
               {<DeleteIcon />}
             </span>
             <span
-              className="crud-component__todo-stick__content-update"
+              className="bookmark-component__bookmark-stick__content-update"
               title="Update"
               onClick={() => {
-                handleTodoUpdate()
+                handleBookmarkUpdate()
               }}
             >
               {<UpdateIcon />}
@@ -147,7 +147,7 @@ const TodoStickComponent = ({ refObj }) => {
           </div>
         </div>
       </div>
-      <UpdateTodoComponent
+      <UpdateBookmarkComponent
         prev={refObj.task}
         openDetail={openDetail}
         setOpenDetail={setOpenDetail}
@@ -157,4 +157,4 @@ const TodoStickComponent = ({ refObj }) => {
   )
 }
 
-export default TodoStickComponent
+export default BookmarkStickComponent
