@@ -3,6 +3,7 @@ import Layout from "../components/layout/layout.component"
 import SEO from "../components/seo"
 import "./index.styles.css"
 import SmallNavComponent from "../components/small-nav/small-nav.component"
+import BookmarkListComponent from "../components/bookmark-list/bookmark-list.component"
 
 const IndexPage = () => {
   return (
@@ -10,6 +11,7 @@ const IndexPage = () => {
       <SEO title="Index Page" />
       <div className="bookmark-page__index">
         <SmallNavComponent />
+        <BookmarkListComponent />
       </div>
     </Layout>
   )
