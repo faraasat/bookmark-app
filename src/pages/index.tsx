@@ -11,7 +11,9 @@ const IndexPage = () => {
       <SEO title="Index Page" />
       <div className="bookmark-page__index">
         <SmallNavComponent />
+        <div className="bookmark-page__index__bookmarks-list">
         <BookmarkListComponent />
+        </div>
       </div>
     </Layout>
   )

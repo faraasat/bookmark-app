@@ -10,12 +10,12 @@ const SearchTodoComponent = () => {
   }
 
   return (
-    <div className="bookmark-component__search-todo">
+    <div className="bookmark-component__search-bookmark">
       <input
         type="text"
-        className="bookmark-component__search-todo__input"
-        placeholder="Search Todos"
-        id="search-todos"
+        className="bookmark-component__search-bookmark__input"
+        placeholder="Search Bookmarks"
+        id="search-bookmarks"
         onChange={e => handleSearchChange(e)}
       />
     </div>

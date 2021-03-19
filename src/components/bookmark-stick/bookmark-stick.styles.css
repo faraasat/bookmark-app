@@ -1,22 +1,22 @@
-.bookmark-component__todo-stick {
+.bookmark-component__bookmark-stick {
   width: 100%;
   margin: 10px 0px;
   transition: all 0.5s ease-in-out;
 }
 
-.bookmark-component__todo-stick:hover {
+.bookmark-component__bookmark-stick:hover {
   transform: scale(1.05);
   box-shadow: 0px 0px 14px rgba(1, 1, 1, 0.8);
   border-radius: 6px;
 }
 
-.bookmark-component__todo-stick:active {
+.bookmark-component__bookmark-stick:active {
   transform: scale(0.97);
   box-shadow: 0px 0px 11px rgba(1, 1, 1, 0.8);
   border-radius: 6px;
 }
 
-.bookmark-component__todo-stick__content {
+.bookmark-component__bookmark-stick__content {
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -33,20 +33,20 @@
   box-shadow: 0px 1px 5px rgba(1, 1, 1, 0.7);
 }
 
-.bookmark-component__todo-stick__content-star svg {
+.bookmark-component__bookmark-stick__content-star svg {
   font-size: 35px;
   align-self: center;
   filter: drop-shadow(0px 0px 1px rgba(1, 1, 1, 1));
   transition: all 0.5s ease-in-out;
 }
 
-.bookmark-component__todo-stick__content-star:hover svg {
+.bookmark-component__bookmark-stick__content-star:hover svg {
   filter: brightness(90%);
   transform: scale(1.1);
   filter: drop-shadow(0px 0px 2px rgba(1, 1, 1, 1));
 }
 
-.bookmark-component__todo-stick__content-task {
+.bookmark-component__bookmark-stick__content-task {
   font-family: "Pacifico", cursive;
   font-size: 23px;
   font-weight: bold;
@@ -55,15 +55,15 @@
   margin-left: 20px;
 }
 
-.bookmark-component__todo-stick__content-task:hover {
+.bookmark-component__bookmark-stick__content-task:hover {
   text-shadow: 0px 0px 5px rgba(1, 1, 1, 1);
 }
 
-.bookmark-component__todo-stick__content-icons {
+.bookmark-component__bookmark-stick__content-icons {
   margin-left: auto;
 }
 
-.bookmark-component__todo-stick__content-delete svg {
+.bookmark-component__bookmark-stick__content-delete svg {
   color: rgb(231, 104, 104);
   font-size: 35px;
   align-self: center;
@@ -71,13 +71,13 @@
   filter: drop-shadow(0px 0px 1px rgba(1, 1, 1, 1));
 }
 
-.bookmark-component__todo-stick__content-delete:hover svg {
+.bookmark-component__bookmark-stick__content-delete:hover svg {
   color: rgb(252, 96, 96);
   transform: scale(1.1);
   filter: drop-shadow(0px 0px 2px rgba(1, 1, 1, 1));
 }
 
-.bookmark-component__todo-stick__content-update svg {
+.bookmark-component__bookmark-stick__content-update svg {
   color: rgb(125, 231, 104);
   font-size: 35px;
   align-self: center;
@@ -85,7 +85,7 @@
   filter: drop-shadow(0px 0px 1px rgba(1, 1, 1, 1));
 }
 
-.bookmark-component__todo-stick__content-update:hover svg {
+.bookmark-component__bookmark-stick__content-update:hover svg {
   color: rgb(117, 253, 90);
   transform: scale(1.1);
   filter: drop-shadow(0px 0px 2px rgba(1, 1, 1, 1));
