@@ -69,7 +69,7 @@ const BookmarkListComponent = () => {
       ) : (
         !loading &&
         typeof data != "undefined" && (
-          <div className="crud-component__bookmark-list__nothing">
+          <div className="bookmark-component__bookmark-list__nothing">
             <MoodBadIcon />
             Ooops! Nothing To show...
           </div>

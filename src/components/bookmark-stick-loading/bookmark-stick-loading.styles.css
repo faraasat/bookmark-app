@@ -1,10 +1,10 @@
-.crud-component__stick-loading {
+.bookmark-component__stick-loading {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.crud-component__stick-loading_box {
+.bookmark-component__stick-loading_box {
   background: linear-gradient(
     120deg,
     rgb(167, 167, 167) 30%,
@@ -18,7 +18,7 @@
   background-size: 400%;
 }
 
-.crud-component__stick-loading_text {
+.bookmark-component__stick-loading_text {
   background: linear-gradient(
     120deg,
     rgb(167, 167, 167) 30%,
